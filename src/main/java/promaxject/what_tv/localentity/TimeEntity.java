@@ -1,4 +1,4 @@
-package promaxject.what_tv.board.domain.entity;
+package promaxject.what_tv.localentity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
