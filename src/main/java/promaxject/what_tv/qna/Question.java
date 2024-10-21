@@ -2,6 +2,8 @@ package promaxject.what_tv.qna;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import promaxject.what_tv.user.SiteUser;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +12,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "question")
+@NoArgsConstructor
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +24,17 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private LocalDateTime create_at;
+    @Column(name="create_at")
+    private LocalDateTime createAt;
 
     // 관계 주입
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
+
+    @Column(name="modify_at")
+    private LocalDateTime modifyAt;
+
+
+    @ManyToOne
+    private SiteUser author;
 }
