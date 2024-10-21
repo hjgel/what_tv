@@ -1,12 +1,15 @@
 package promaxject.what_tv.qna;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import promaxject.what_tv.user.SiteUser;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,10 +18,16 @@ public class Answer {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private LocalDateTime create_at;
+    @Column(name="create_at")
+    private LocalDateTime createAt;
+
+    @Column(name="modify_at")
+    private LocalDateTime modifyAt;
 
     // 관계 주입
     @ManyToOne
     private Question question;
 
+    @ManyToOne
+    private SiteUser author;
 }
