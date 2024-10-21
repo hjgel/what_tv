@@ -10,13 +10,17 @@ spring:
     username: whatTv
     password: 135798
 
+
 jpa:
   database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   open-in-view: false
   show-sql: true
   hibernate:
+    dialect: org.hibernate.dialect.MySQLDialect
     format_sql: true
-    ddl-auto: create
+    ddl-auto: update
+    highlight_sql : true
+  defer-datasource-initailization: true
 
 logging:
   level:
@@ -27,6 +31,7 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
+
 
 
 # mybatis
