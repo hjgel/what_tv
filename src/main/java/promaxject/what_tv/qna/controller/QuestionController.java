@@ -68,6 +68,8 @@ public class QuestionController {
         return "question_list";
     }
 
+
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
     public String questionModify(QuestionForm questionForm, @PathVariable("id") Long id, Principal principal) {
