@@ -14,9 +14,9 @@ import promaxject.what_tv.qna.Answer;
 import promaxject.what_tv.qna.Question;
 import promaxject.what_tv.qna.repository.QuestionRepository;
 import promaxject.what_tv.user.SiteUser;
-
 import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +74,12 @@ public class QuestionService {
         Pageable pageable = PageRequest.of(page, 15, Sort.by(sorts));
         Specification<Question> spec = search(kw);
         return this.questionRepository.findAll(spec, pageable);
+
+    public Page<Question> getList(int page){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createAt"));
+        Pageable pageable = PageRequest.of(page, 15, Sort.by(sorts));
+        return this.questionRepository.findAll(pageable);
     }
 
     public void modify(Question question, String subject, String content) {
@@ -86,6 +92,5 @@ public class QuestionService {
     public void delete(Question question) {
         this.questionRepository.delete(question);
     }
-
 
 }
