@@ -10,6 +10,15 @@ spring:
     username: whatTv
     password: 135798
 
+  servlet:
+    multipart:
+      max-file-size: 10000MB   # 업로드 가능한 파일의 최대 크기
+      max-request-size: 10000MB # 업로드 가능한 요청 전체의 최대 크기
+
+file:
+  boardImagePath: /Users/jun/SpringBoot/what_tv/src/main/resources/static/images/
+
+
 
 jpa:
   database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

@@ -1,4 +1,4 @@
-package promaxject.what_tv.form;
+package promaxject.what_tv.qna.form;
 
 import lombok.Data;
 
