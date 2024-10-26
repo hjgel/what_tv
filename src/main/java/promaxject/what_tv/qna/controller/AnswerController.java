@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import promaxject.what_tv.form.AnswerForm;
+import promaxject.what_tv.qna.form.AnswerForm;
 import promaxject.what_tv.qna.Question;
 import promaxject.what_tv.qna.service.AnswerService;
 import promaxject.what_tv.qna.service.QuestionService;

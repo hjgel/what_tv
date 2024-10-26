@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import promaxject.what_tv.form.AnswerForm;
-import promaxject.what_tv.form.QuestionForm;
+import promaxject.what_tv.qna.form.AnswerForm;
+import promaxject.what_tv.qna.form.QuestionForm;
 import promaxject.what_tv.qna.Question;
 import promaxject.what_tv.qna.service.QuestionService;
 import promaxject.what_tv.user.SiteUser;
@@ -18,7 +18,6 @@ import promaxject.what_tv.user.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.List;
 
 
 @RequiredArgsConstructor // 이거 쓰면 생성자 굳이 안 만들어도 됨.

@@ -1,6 +1,7 @@
 package promaxject.what_tv.user;
 
 import lombok.Data;
+import promaxject.what_tv.profile.ProfileImage;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,5 +25,8 @@ public class SiteUser {
 
     @Column(unique = true)
     private String email;
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private ProfileImage image;
 
 }

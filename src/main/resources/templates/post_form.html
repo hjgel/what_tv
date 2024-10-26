@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 등록</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+  <br>
+  <form th:object="${postForm}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+
+    <!-- 제목 입력 -->
+    <div class="mb-3">
+      <label for="title" class="form-label">제목</label>
+      <textarea type="text" name="title" id="title" class="form-control"></textarea>
+    </div>
+
+    <!-- 내용 입력 -->
+    <div class="mb-3">
+      <label for="content" class="form-label">내용</label>
+      <textarea name="content" id="content" class="form-control" rows="10"></textarea>
+    </div>
+
+    <!-- 파일 업로드 -->
+    <div class="mb-3">
+      <label for="files">파일 업로드</label>
+      <input type="file" name="files" id="files" class="form-control" multiple>
+      <!-- multiple 속성으로 여러 파일 선택 가능 -->
+    </div>
+
+    <!-- 등록 버튼 -->
+    <input type="submit" value="등록하기" class="btn my-2" style="background-color: #FFE1CC; border-color: #FFE1CC; color: black;">
+  </form>
+</div>
+</body>
+</html>

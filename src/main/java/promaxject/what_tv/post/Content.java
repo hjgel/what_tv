@@ -1,4 +1,4 @@
-package promaxject.what_tv.qna;
+package promaxject.what_tv.post;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @NoArgsConstructor
-public class Answer {
+public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,10 +25,10 @@ public class Answer {
     @Column(name="modify_at")
     private LocalDateTime modifyAt;
 
-    // 관계 주입
-    @ManyToOne
-    private Question question;
 
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     @ManyToOne
     private SiteUser author;

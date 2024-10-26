@@ -34,7 +34,7 @@
 <body>
 <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color: #FFE1CC;;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/post/list">
       <img src="/images/whatTV_logo.png" alt="Logo" width="100" height="auto">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -44,13 +44,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/community}">커뮤니티</a>
+          <a class="nav-link" th:href="@{/post/list}">커뮤니티</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" th:href="@{/popular}">인기글</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" th:href="@{/mypage}">마이페이지</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/question/list}">Q&A</a>
         </li>
       </ul>
 
