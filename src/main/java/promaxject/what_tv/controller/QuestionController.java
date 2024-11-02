@@ -19,6 +19,7 @@ import promaxject.what_tv.service.user.UserService;
 import javax.validation.Valid;
 import java.security.Principal;
 
+
 @RequiredArgsConstructor // 이거 쓰면 생성자 굳이 안 만들어도 됨.
 @Controller
 @RequestMapping("/question")
@@ -26,12 +27,6 @@ public class QuestionController {
 
     private final QuestionService questionService;
     private final UserService userService;
-//    @GetMapping("/question/list")
-//    public String list(Model model) {
-//        List<Question> questionList = this.questionService.getList();
-//        model.addAttribute("questionList", questionList);
-//        return "question_list";
-//    }
 
     // 리스트에 있는 본인 id를 http주소로 쏴주어서 매핑함.
     @GetMapping(value = "/detail/{id}")
@@ -64,6 +59,7 @@ public class QuestionController {
         Page<Question> paging = this.questionService.getList(page, kw);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
+
         return "question_list";
     }
 
