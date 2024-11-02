@@ -19,6 +19,7 @@ import promaxject.what_tv.service.user.UserService;
 import javax.validation.Valid;
 import java.security.Principal;
 
+
 @RequiredArgsConstructor // 이거 쓰면 생성자 굳이 안 만들어도 됨.
 @Controller
 @RequestMapping("/question")
@@ -64,6 +65,9 @@ public class QuestionController {
         Page<Question> paging = this.questionService.getList(page, kw);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+        Page<Question> paging = this.questionService.getList(page);
+        model.addAttribute("paging", paging);
         return "question_list";
     }
 
