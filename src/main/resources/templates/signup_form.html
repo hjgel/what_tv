@@ -87,11 +87,16 @@
   <div class="signup-section">
     <h4>회원가입</h4>
     <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
-      <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+      <div th:replace="~{form_errors :: formErrorsFragment}"></div><br>
 
       <div class="mb-3">
         <label for="username" class="form-label">사용자ID</label>
         <input type="text" th:field="*{username}" class="form-control" placeholder="사용자ID 입력">
+      </div>
+
+      <div class="mb-3">
+        <label for="nickname" class="form-label">별명</label>
+        <input type="text" th:field="*{nickname}" class="form-control" placeholder="별명 입력">
       </div>
 
       <div class="mb-3">
@@ -108,6 +113,15 @@
         <label for="email" class="form-label">이메일</label>
         <input type="email" th:field="*{email}" class="form-control" placeholder="이메일 입력">
       </div>
+
+      <div class="form-group">
+        <label for="region">지역 선택</label><br>
+        <select id="region" name="region" class="form-control" th:field="*{region}" style="width: 50%; height: 30px;">
+          <option value="" disabled selected>지역을 선택하세요</option>
+          <option th:each="region : ${regions}" th:value="${region}" th:text="${region}"></option>
+        </select>
+      </div>
+      <br>
 
       <button type="submit" class="btn btn-primary">회원가입</button>
     </form>

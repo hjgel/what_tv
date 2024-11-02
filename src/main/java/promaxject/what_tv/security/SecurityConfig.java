@@ -1,6 +1,5 @@
 package promaxject.what_tv.security;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,19 +17,34 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests.requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
-         .csrf((csrf) -> csrf
-                .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
+        http
+                .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+                        // /mypage 경로에 대해 인증 요구
+                        .requestMatchers(new AntPathRequestMatcher("/user/mypage")).authenticated()
+                        // 나머지 모든 경로는 인증 없이 접근 가능
+                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
+                )
+                .csrf((csrf) -> csrf
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**"))
+                )
                 .headers((headers) -> headers
                         .addHeaderWriter(new XFrameOptionsHeaderWriter(
-                                XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
-        .formLogin((formLogin) -> formLogin.loginPage("/user/login").defaultSuccessUrl("/"))
+                                XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
+                )
+                .formLogin((formLogin) -> formLogin
+                        .loginPage("/user/login") // 로그인 페이지 경로 설정
+                        .defaultSuccessUrl("/")   // 로그인 성공 후 이동할 기본 경로
+                        .permitAll()
+                )
                 .logout((logout) -> logout
-                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true));
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                );
+
         return http.build();
     }
 

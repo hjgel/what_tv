@@ -17,6 +17,7 @@ spring:
 
 file:
   boardImagePath: /Users/jun/SpringBoot/what_tv/src/main/resources/static/images/
+  profileImagePath: /Users/jun/SpringBoot/what_tv/src/main/resources/static/profileImage/
 
 
 

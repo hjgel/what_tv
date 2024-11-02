@@ -44,7 +44,7 @@
               th:text="${#lists.size(post.contentList)}">
                   </span>
       </td>
-      <td><span th:if="${post.author != null}" th:text="${post.author.username}"></span></td>
+      <td><span th:if="${post.author != null}" th:text="${post.author.nickname}"></span></td>
       <td th:text="${#temporals.format(post.createAt, 'yyyy-MM-dd HH:mm')}"></td>
     </tr>
     </tbody>

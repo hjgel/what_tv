@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Page</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+  <style>
+    body {
+      background: linear-gradient(135deg, #D1E8FF, #F6EFC6, #E7D0FF);
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .profile-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-info {
+      text-align: center;
+    }
+    .profile-info img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .text-box {
+      background-color: #f1f3f5;
+      padding: 0.75rem;
+      border-radius: 4px;
+      color: #495057;
+    }
+    .email-list {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container profile-container mt-5" layout:fragment="content">
+  <div class="profile-header mb-4">
+    <div class="profile-info d-flex align-items-center mb-3 position-relative">
+      <!-- 프로필 이미지 -->
+      <img id="profile-img" th:src="${image.getUrl()}" class="img-fluid rounded-circle" alt="Profile picture" style="width: 150px; height: 150px; cursor: pointer; border: 1px solid black;">
+        <span id="hover-text" class="hover-text" style="display: none; position: absolute; top: 50%; left: 25%; transform: translate(-50%, -50%); color: white; font-weight: bold; background-color: rgba(0, 0, 0, 0.5); padding: 5px 10px; border-radius: 5px;">
+            이미지 변경
+        </span>
+
+      <!-- 파일 업로드 폼 -->
+      <form id="upload-form" th:action="@{/image/upload}" th:method="post" enctype="multipart/form-data" class="mt-2">
+        <!-- 숨겨진 파일 입력 필드 -->
+        <input type="file" id="file-upload" name="file" accept="image/*" style="display: none;" required>
+      </form>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h4>id  : &nbsp;&nbsp;&nbsp;</h4>
+      <h4 th:text="${user.username}">Username</h4>
+    </div>
+
+    <button class="btn btn-primary">Edit</button>
+  </div>
+
+  <script>
+    // 프로필 이미지와 파일 입력 요소 선택
+    let profileImg = document.querySelector("#profile-img");
+    let fileUpload = document.querySelector("#file-upload");
+    let uploadForm = document.querySelector("#upload-form");
+    let hoverText = document.querySelector("#hover-text");
+
+    // 마우스가 이미지 위로 올라올 때 "이미지 변경" 표시
+    profileImg.addEventListener("mouseenter", function () {
+      hoverText.style.display = "block";
+    });
+
+    // 마우스가 이미지 밖으로 나갈 때 "이미지 변경" 숨기기
+    profileImg.addEventListener("mouseleave", function () {
+      hoverText.style.display = "none";
+    });
+
+    // 프로필 이미지를 클릭하면 파일 선택 창 열기
+    profileImg.addEventListener("click", function () {
+      fileUpload.click();
+    });
+
+    // 파일 선택 시 미리보기 업데이트 후 폼 자동 제출
+    fileUpload.addEventListener("change", function (event) {
+      let reader = new FileReader();
+      reader.onload = function () {
+        profileImg.src = reader.result; // 미리보기 이미지 업데이트
+      };
+      reader.readAsDataURL(event.target.files[0]); // 선택한 파일을 미리보기로 읽기
+
+      // 파일 선택 후 폼 자동 제출
+      uploadForm.submit();
+    });
+  </script>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label>별명</label>
+      <div class="text-box" th:text="${user.nickname}" id="nickname"></div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>계좌 번호</label>
+      <div class="text-box">Your Account</div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>지역</label>
+      <div class="text-box" th:text="${user.region}">Your Region</div>
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label>게시글 목록</label>
+      <div class="text-box">Your Post List</div>
+    </div>
+  </div>
+
+  <div class="email-list">
+    <h5>My email Address</h5>
+    <div class="d-flex align-items-center mb-2">
+      <img src="https://via.placeholder.com/40" class="rounded-circle mr-3" alt="Email Icon">&nbsp;&nbsp;&nbsp;
+      <div>
+        <p class="mb-0" th:text="${user.email}"></p>
+      </div>
+    </div>
+    <button class="btn btn-outline-primary btn-sm">+ 이메일 추가</button>
+  </div>
+</div>
+
+</body>
+</html>

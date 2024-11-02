@@ -3,12 +3,7 @@ package promaxject.what_tv;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import promaxject.what_tv.qna.Question;
-import promaxject.what_tv.qna.repository.QuestionRepository;
-import promaxject.what_tv.qna.service.QuestionService;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
+import promaxject.what_tv.service.qna.QuestionService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
