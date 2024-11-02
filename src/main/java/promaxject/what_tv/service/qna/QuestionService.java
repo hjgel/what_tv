@@ -3,12 +3,14 @@ package promaxject.what_tv.service.qna;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.config.ConfigDataLocationNotFoundException;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
 import promaxject.what_tv.domain.Answer;
 import promaxject.what_tv.domain.Question;
 import promaxject.what_tv.domain.SiteUser;
@@ -18,6 +20,15 @@ import promaxject.what_tv.repository.QuestionRepository;
 
 import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
+
+import promaxject.what_tv.exception.DataNotFoundException;
+import promaxject.what_tv.domain.Answer;
+import promaxject.what_tv.domain.Question;
+import promaxject.what_tv.repository.QuestionRepository;
+import promaxject.what_tv.domain.SiteUser;
+
+import javax.persistence.criteria.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
