@@ -19,7 +19,7 @@ public class PostResponseDTO {
     private LocalDateTime createdAt;
     private String author;
     private List<String> imageUrls;
-
+//
     @Builder
     public PostResponseDTO(Post post) {
         this.id = post.getId();
