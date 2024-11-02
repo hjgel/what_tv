@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import promaxject.what_tv.domain.SiteUser;
-import promaxject.what_tv.dto.ProfileImageDto;
 import promaxject.what_tv.dto.ProfileImageResponseDto;
 import promaxject.what_tv.form.UserCreateForm;
-//import promaxject.what_tv.service.user.ProfileImageService;
 import promaxject.what_tv.service.user.ProfileImageService;
 import promaxject.what_tv.service.user.UserService;
 
@@ -45,15 +43,6 @@ public class UserController {
         return "my_page";
     }
 
-//    @GetMapping("/info")
-//    public String memberInfo(Model model, Authentication authentication) {
-//        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//        ProfileImageResponseDto image = profileImageService.findImage(userDetails.getUsername());
-//
-//        model.addAttribute("image", image);
-//
-//        return "/my_page";
-//    }
 
 
     @GetMapping("/signup")

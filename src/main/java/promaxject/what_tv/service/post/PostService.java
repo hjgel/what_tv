@@ -60,16 +60,6 @@ public class PostService {
         };
     }
 
-//    public Post getPost(Long id) {
-//        Optional<Post> post = this.postRepository.findById(id);
-//        if(post.isPresent()) {
-//            return post.get();
-//        } else {
-//            throw new DataNotFoundException("Post not found");
-//        }
-//    }
-
-
 
     public Post getPost(Long id) {
         Post post = postRepository.findWithImagesById(id)

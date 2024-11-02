@@ -27,12 +27,6 @@ public class QuestionController {
 
     private final QuestionService questionService;
     private final UserService userService;
-//    @GetMapping("/question/list")
-//    public String list(Model model) {
-//        List<Question> questionList = this.questionService.getList();
-//        model.addAttribute("questionList", questionList);
-//        return "question_list";
-//    }
 
     // 리스트에 있는 본인 id를 http주소로 쏴주어서 매핑함.
     @GetMapping(value = "/detail/{id}")
@@ -65,9 +59,7 @@ public class QuestionController {
         Page<Question> paging = this.questionService.getList(page, kw);
         model.addAttribute("paging", paging);
         model.addAttribute("kw", kw);
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
-        Page<Question> paging = this.questionService.getList(page);
-        model.addAttribute("paging", paging);
+
         return "question_list";
     }
 
