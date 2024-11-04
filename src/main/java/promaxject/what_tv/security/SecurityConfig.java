@@ -28,7 +28,12 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
                 )
                 .csrf((csrf) -> csrf
-                        .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**"))
+                        // 특정 경로에 대해 CSRF 비활성화
+                        .ignoringRequestMatchers(
+                                new AntPathRequestMatcher("/h2-console/**"),
+                                new AntPathRequestMatcher("/api/v1/payment/validation/**"),
+                                new AntPathRequestMatcher("/api/v1/payment/order/**")
+                        )
                 )
                 .headers((headers) -> headers
                         .addHeaderWriter(new XFrameOptionsHeaderWriter(
