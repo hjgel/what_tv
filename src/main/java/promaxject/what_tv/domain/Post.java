@@ -37,4 +37,6 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @OrderBy("id asc")
     private List<Image> imageList;
+
+    private Integer order_price;
 }

@@ -80,12 +80,13 @@ public class PostService {
     }
 
     @Transactional
-    public void create(String title, String content, SiteUser user, PostImageDto postImageDto) {
+    public void create(String title, String content, SiteUser user, PostImageDto postImageDto, Integer price) {
         Post p = new Post();
         p.setTitle(title);
         p.setContent(content);
         p.setCreateAt(LocalDateTime.now());
         p.setAuthor(user);
+        p.setOrder_price(price);
         this.postRepository.save(p);
 
         if(postImageDto.getFiles() != null && !postImageDto.getFiles().isEmpty()) {

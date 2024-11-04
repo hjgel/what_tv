@@ -48,16 +48,15 @@ public class PostController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
-    public String postCreate(@Valid PostForm postForm, BindingResult bindingResult, Principal principal, @ModelAttribute PostImageDto postImageDto, Model model) {
+    public String postCreate(@Valid PostForm postForm, BindingResult bindingResult, Principal principal, @ModelAttribute PostImageDto postImageDto, @RequestParam("price") Integer price) {
         // 질문 저장
-        
         if (bindingResult.hasErrors()) {
             return "post_form";
         }
 
         logger.info("PostImageDto is {}", postImageDto);
         SiteUser siteUser = this.userService.getUser(principal.getName());
-        this.postService.create(postForm.getTitle(), postForm.getContent(), siteUser, postImageDto);
+        this.postService.create(postForm.getTitle(), postForm.getContent(), siteUser, postImageDto, price);
         return "redirect:/post/list";
     }
 
