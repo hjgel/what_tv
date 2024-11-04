@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>My Posts</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+</head>
+<body>
+<div layout:fragment="content" class="container my-3">
+  <div class="row my-3">
+    <a href="/user/mypage">뒤로가기</a> <h2>내가 작성한 게시물</h2>
+  </div>
+
+  <!-- 테이블 부분 -->
+  <table class="table">
+    <thead style="background-color: #f8f9fa;">
+    <tr class="text-center">
+      <th>번호</th>
+      <th style="width:50%">제목</th>
+      <th>작성일시</th>
+      <th>댓글 수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="text-center" th:each="post, loop : ${myPosts}">
+      <td th:text="${myPosts.size() - loop.index}"></td>
+      <td class="text-start">
+        <a th:href="@{|/post/detail/${post.id}|}" th:text="${post.title}"></a>
+      </td>
+      <td th:text="${#temporals.format(post.createAt, 'yyyy-MM-dd HH:mm')}"></td>
+      <td>
+        <span class="text-danger small ms-2" th:text="${#lists.size(post.contentList)}"></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
