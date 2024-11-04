@@ -111,8 +111,8 @@
       <div class="text-box" th:text="${user.nickname}" id="nickname"></div>
     </div>
     <div class="col-md-6 mb-3">
-      <label>계좌 번호</label>
-      <div class="text-box">Your Account</div>
+      <label>전화 번호</label>
+      <div class="text-box">Your number</div>
     </div>
     <div class="col-md-6 mb-3">
       <label>지역</label>
@@ -121,8 +121,9 @@
     </div>
 
     <div class="col-md-6 mb-3">
+      <br>
       <label>게시글 목록</label>
-      <div class="text-box">Your Post List</div>
+      <a th:href="@{/user/mypage/posts}" class="text-box" style="text-decoration: none; color: #495057;">Your Post List</a>
     </div>
   </div>
 

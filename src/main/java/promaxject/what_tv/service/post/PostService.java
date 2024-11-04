@@ -124,6 +124,10 @@ public class PostService {
         return this.postRepository.findAll(spec, pageable);
     }
 
+    public List<Post> getPostByUser(SiteUser user) {
+        return this.postRepository.findByAuthor(user);
+    }
+
     public void delete(Post post) {
         this.postRepository.delete(post);
     }

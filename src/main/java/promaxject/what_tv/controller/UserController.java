@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import promaxject.what_tv.domain.Post;
 import promaxject.what_tv.domain.SiteUser;
 import promaxject.what_tv.dto.ProfileImageDto;
 import promaxject.what_tv.dto.ProfileImageResponseDto;
 import promaxject.what_tv.form.UserCreateForm;
 //import promaxject.what_tv.service.user.ProfileImageService;
+import promaxject.what_tv.service.post.PostService;
 import promaxject.what_tv.service.user.ProfileImageService;
 import promaxject.what_tv.service.user.UserService;
 
@@ -30,6 +32,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final ProfileImageService profileImageService;
+    private final PostService postService;
 
     @GetMapping("/mypage")
     public String myPage(Principal principal, Model model, Authentication authentication) {
@@ -40,9 +43,22 @@ public class UserController {
 
         ProfileImageResponseDto image = profileImageService.findImage(userDetails.getUsername());
 
+
         model.addAttribute("image", image);
         model.addAttribute("user", user);
         return "my_page";
+    }
+
+    @GetMapping("/mypage/posts")
+    public String myPosts(Principal principal, Model model) {
+        String username = principal.getName();
+        SiteUser user = userService.getUsername(username);
+
+        // 사용자가 작성한 게시글 목록 조회
+        List<Post> myPosts = postService.getPostByUser(user);
+        model.addAttribute("myPosts", myPosts);
+
+        return "my_posts";
     }
 
 //    @GetMapping("/info")
