@@ -48,8 +48,9 @@ public class PostController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
-    public String postCreate(@Valid PostForm postForm, BindingResult bindingResult, Principal principal, @ModelAttribute PostImageDto postImageDto) {
+    public String postCreate(@Valid PostForm postForm, BindingResult bindingResult, Principal principal, @ModelAttribute PostImageDto postImageDto, Model model) {
         // 질문 저장
+        
         if (bindingResult.hasErrors()) {
             return "post_form";
         }
