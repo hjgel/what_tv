@@ -2,6 +2,12 @@
 server:
   port: 8080
 
+imp:
+  v1:
+    api:
+      key: 4320034802014282
+      secret: LqAANgPmihhWeqIsGqAf9AwbauTSUvBXGYRzGqI8ZbVRBciDNnoeWelBRYfmiPhAnCunTRSop2ZuBC4a
+
 # database 연동 설정
 spring:
   datasource:

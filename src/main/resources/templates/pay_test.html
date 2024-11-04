@@ -1,55 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>게시글 등록</title>
+  <title>Payment Page</title>
   <!-- jQuery CDN 추가 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- 아임포트 스크립트 추가 -->
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
-<div layout:fragment="content" class="container">
-  <br>
-  <form th:object="${postForm}" method="post" enctype="multipart/form-data">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+<!-- 버튼들 -->
+<button id="cardPay" onclick="handlePayment('html5_inicis.INIpayTest', 'card')">카드 결제</button>
+<!--<button id="kakaoPay" onclick="handlePayment('kakaopay', 'card')">카카오페이 결제</button>-->
 
-    <!-- 제목 입력 -->
-    <div class="mb-3">
-      <label for="title" class="form-label">제목</label>
-      <textarea type="text" name="title" id="title" class="form-control"></textarea>
-    </div>
-
-    <!-- 내용 입력 -->
-    <div class="mb-3">
-      <label for="content" class="form-label">내용</label>
-      <textarea name="content" id="content" class="form-control" rows="10"></textarea>
-    </div>
-
-    <!-- 파일 업로드 -->
-    <div class="mb-3">
-      <label for="files">파일 업로드</label>
-      <input type="file" name="files" id="files" class="form-control" multiple>
-    </div>
-
-    <button id="cardPay" onclick="handlePayment('html5_inicis.INIpayTest', 'card')">카드 결제</button>
-
-    <!-- 등록 버튼 -->
-    <input type="submit" value="등록하기" class="btn my-2" style="background-color: #FFE1CC; border-color: #FFE1CC; color: black;">
-  </form>
-</div>
 <script th:inline="javascript">
   // 아임포트 코드
-  var impCode = /*[[${@environment.getProperty('imp.code')}]]*/ '';
+  var impCode = "imp36746032";
 
   function handlePayment(pg, payMethod) {
     console.log("handlePayment");
     console.log(pg);
     console.log(payMethod);
 
-    var pay = {
-      price: 3000,
+    var order = {
+      productId: 2,
+      productName: '상품2',
+      price: 100,
+      quantity: 1
     };
 
     // 결제하기 버튼 클릭 시 결제 요청
@@ -57,11 +34,11 @@
     IMP.request_pay({
       pg: pg,
       pay_method: payMethod,
-      merchant_uid: '212R3A11TD233AAC', // 주문번호 생성
-      name: '상품1',
-      amount: 3000, // 결제 가격
-      buyer_name: '김민규',
-      buyer_tel: '010-1234-5678'
+      merchant_uid: '212R3A11TD233AAK', // 주문번호 생성
+      name: '상품3',
+      amount: 100, // 결제 가격
+      buyer_name: '김민규1',
+      buyer_tel: '010-1234-5578'
     }, function(rsp) {
       if (rsp.success) {
         // 결제 성공 시
@@ -101,6 +78,7 @@
     });
   }
 </script>
+
 
 </body>
 </html>

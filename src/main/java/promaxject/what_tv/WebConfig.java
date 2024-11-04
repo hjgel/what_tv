@@ -1,5 +1,7 @@
 package promaxject.what_tv;
 
+import com.siot.IamportRestClient.IamportClient;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,4 +16,5 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/profileImages/**")
                 .addResourceLocations("file:/Users/jun/SpringBoot/what_tv/src/main/resources/static/profileImage/");
     }
+
 }
