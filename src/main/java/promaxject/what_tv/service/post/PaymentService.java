@@ -7,6 +7,7 @@ import com.siot.IamportRestClient.response.Payment;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import promaxject.what_tv.domain.Order;
 import promaxject.what_tv.dto.OrderDto;
 import promaxject.what_tv.repository.OrderRepository;
 
@@ -28,6 +29,12 @@ import promaxject.what_tv.repository.OrderRepository;
 public class PaymentService {
     private final IamportClient iamportClient;
     private final OrderRepository orderRepository;
+
+    public Integer getPriceByOrderId(Long orderId) {
+        return orderRepository.findById(orderId)
+                .map(Order::getPrice)
+                .orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + orderId));
+        }
 
     /**
      * 아임포트 서버로부터 결제 정보를 검증
