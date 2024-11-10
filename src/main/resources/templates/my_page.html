@@ -68,7 +68,7 @@
       <h4 th:text="${user.username}">Username</h4>
     </div>
 
-    <button class="btn btn-primary">Edit</button>
+    <a th:href="@{/user/mypage/edit}" class="btn btn-primary">Edit</a>
   </div>
 
   <script>
@@ -112,7 +112,7 @@
     </div>
     <div class="col-md-6 mb-3">
       <label>전화 번호</label>
-      <div class="text-box">Your number</div>
+      <div class="text-box" th:text="${user.PNumber}">Your number</div>
     </div>
     <div class="col-md-6 mb-3">
       <label>지역</label>
@@ -128,14 +128,13 @@
   </div>
 
   <div class="email-list">
-    <h5>My email Address</h5>
+    <h5>이메일 정보</h5>
     <div class="d-flex align-items-center mb-2">
       <img src="https://via.placeholder.com/40" class="rounded-circle mr-3" alt="Email Icon">&nbsp;&nbsp;&nbsp;
       <div>
         <p class="mb-0" th:text="${user.email}"></p>
       </div>
     </div>
-    <button class="btn btn-outline-primary btn-sm">+ 이메일 추가</button>
   </div>
 </div>
 

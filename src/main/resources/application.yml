@@ -8,6 +8,12 @@ imp:
       key: 4320034802014282
       secret: LqAANgPmihhWeqIsGqAf9AwbauTSUvBXGYRzGqI8ZbVRBciDNnoeWelBRYfmiPhAnCunTRSop2ZuBC4a
 
+coolsms:
+  api:
+    key: NCSLHTOI7EIIPLOE
+    secret: FVN9TI49XHWDDXEVAG0SLZNUYI2IZIZP
+    number: 01056766769
+
 # database 연동 설정
 spring:
   datasource:

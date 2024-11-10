@@ -30,6 +30,9 @@ public class SiteUser {
     @Column
     private String nickname;
 
+    @Column(name = "p_number")
+    private String pNumber;
+
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private ProfileImage image;
 

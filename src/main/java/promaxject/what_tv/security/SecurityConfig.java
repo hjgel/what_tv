@@ -24,6 +24,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         // /mypage 경로에 대해 인증 요구
                         .requestMatchers(new AntPathRequestMatcher("/user/mypage")).authenticated()
+                        // /sms/send 경로는 인증 없이 접근 가능
+                        .requestMatchers(new AntPathRequestMatcher("/sms/send")).permitAll()
                         // 나머지 모든 경로는 인증 없이 접근 가능
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
                 )
@@ -32,7 +34,8 @@ public class SecurityConfig {
                         .ignoringRequestMatchers(
                                 new AntPathRequestMatcher("/h2-console/**"),
                                 new AntPathRequestMatcher("/api/v1/payment/validation/**"),
-                                new AntPathRequestMatcher("/api/v1/payment/order/**")
+                                new AntPathRequestMatcher("/api/v1/payment/order/**"),
+                                new AntPathRequestMatcher("/sms/send") // /sms/send 경로에 대해 CSRF 비활성화
                         )
                 )
                 .headers((headers) -> headers

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -61,6 +62,27 @@ public class UserController {
         return "my_posts";
     }
 
+    // 사용자 정보 수정 페이지
+    @GetMapping("/mypage/edit")
+    public String editUserInfo(Principal principal, Model model) {
+        String username = principal.getName();
+        SiteUser user = userService.getUsername(username);
+        List<String> regions = Arrays.asList("서울", "부산", "인천", "대전", "대구", "광주", "울산", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주");
+        model.addAttribute("regions", regions);
+        model.addAttribute("user", user);
+        return "edit_user_info"; // 사용자 정보 수정 페이지
+    }
+
+    // 사용자 정보 수정 요청 처리
+    @PostMapping("/mypage/edit")
+    public String updateUserInfo(@ModelAttribute SiteUser user, Principal principal, Model model) {
+        String username = principal.getName();
+        userService.updateUserInfo(username, user);
+        List<String> regions = Arrays.asList("서울", "부산", "인천", "대전", "대구", "광주", "울산", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주");
+        model.addAttribute("regions", regions);
+        return "redirect:/user/mypage"; // 수정 후 마이페이지로 리디렉션
+    }
+
 //    @GetMapping("/info")
 //    public String memberInfo(Model model, Authentication authentication) {
 //        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -94,7 +116,7 @@ public class UserController {
         }
 
         try {
-            userService.create(userCreateForm.getUsername(),userCreateForm.getNickname(), userCreateForm.getPassword1(), userCreateForm.getEmail(), userCreateForm.getRegion());
+            userService.create(userCreateForm.getUsername(),userCreateForm.getNickname(), userCreateForm.getPassword1(), userCreateForm.getEmail(), userCreateForm.getRegion(), userCreateForm.getPNumber());
         }catch(DataIntegrityViolationException e) {
             e.printStackTrace();
             bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
