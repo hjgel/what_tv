@@ -24,4 +24,8 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "content_id")
+    private Content content;
 }

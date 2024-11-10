@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>정보 수정</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>회원 정보 수정</h2>
+    <form th:action="@{/user/mypage/edit}" th:object="${user}" method="post">
+        <div class="form-group">
+            <label for="username">사용자 ID</label>
+            <input type="text" th:field="*{username}" class="form-control" id="username" readonly>
+        </div>
+        <div class="form-group">
+            <label for="nickname">별명</label>
+            <input type="text" th:field="*{nickname}" class="form-control" id="nickname">
+        </div>
+        <div class="form-group">
+            <label for="pNumber">전화번호</label>
+            <input type="text" th:field="*{pNumber}" class="form-control" id="pNumber">
+        </div>
+        <div class="form-group">
+            <label for="region">지역</label>
+            <select id="region" name="region" class="form-control" th:field="*{region}">
+                <option th:each="region : ${regions}" th:value="${region}" th:text="${region}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" th:field="*{email}" class="form-control" id="email">
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">수정 완료</button>
+    </form>
+</div>
+</body>
+</html>
