@@ -9,8 +9,11 @@ public interface UserRepository extends JpaRepository<SiteUser, Long> {
     // username으로 중복된 사용자가 있는지 확인
     boolean existsByUsername(String username);
 
-    // email로 중복된 사용자가 있는지 확인₩
+    // email로 중복된 사용자가 있는지 확인
     boolean existsByEmail(String email);
+
+    // 전화번호 중복된 사용자 있는 지 확인
+    boolean existsBypNumber(String pNumber);
 
     Optional<SiteUser> findByUsername(String username);
 

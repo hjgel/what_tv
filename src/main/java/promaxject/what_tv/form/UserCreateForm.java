@@ -27,6 +27,9 @@ public class UserCreateForm {
     @NotEmpty(message = "지역을 정해주세요.")
     private String region;
 
+    @NotEmpty(message = "휴대전화 인증은 필수입니다.")
+    private String pNumber;
+
     @NotEmpty(message = "이메일을 입력하세요.")
     @Email
     private String email;
