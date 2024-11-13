@@ -13,5 +13,4 @@ public class MainController {
 //        return "redirect:/post/list";
         return "main_page";
     }
-
 }
