@@ -15,7 +15,6 @@ public class UserCreateForm {
     private String username;
 
     @Size(min = 2, max = 80, message = "별명은 최소 2글자, 최대 80글자로 지정해주세요.")
-    @NotEmpty(message = "사이트 안에서 사용할 별명을 입력하세요.")
     private String nickname;
 
     @NotEmpty(message = "비밀번호를 입력하세요.")

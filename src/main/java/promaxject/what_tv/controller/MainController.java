@@ -10,7 +10,7 @@ public class MainController {
 //        return "redirect:/question/list";
 //    }
     public String root() {
-        return "redirect:/post/list";
+//        return "redirect:/post/list";
+        return "main_page";
     }
-
 }

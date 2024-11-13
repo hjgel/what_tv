@@ -5,11 +5,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import promaxject.what_tv.domain.Content;
 import promaxject.what_tv.domain.Post;
+import promaxject.what_tv.dto.ContentImageDto;
+import promaxject.what_tv.dto.PostImageDto;
 import promaxject.what_tv.form.ContentForm;
+import promaxject.what_tv.repository.ContentRepository;
 import promaxject.what_tv.service.post.ContentService;
 import promaxject.what_tv.service.post.PostService;
 
@@ -26,12 +28,18 @@ public class ContentController {
     private final PostService postService;
     private final ContentService contentService;
     private final UserService userService;
+    private final ContentRepository contentRepository;
     // 비즈니스 로직을 처리하는 서비스. 질문과 관련된 데이터를 처리하는 역할.
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/{id}")
-    public String createAnswer(Model model, @PathVariable("id") Long id, @Valid ContentForm contentForm, BindingResult bindingResult
-            , Principal principal) {
+    public String createAnswer(Model model,
+                               @PathVariable("id") Long id,
+                               @Valid ContentForm contentForm,
+                               BindingResult bindingResult,
+                               Principal principal,
+                               @ModelAttribute ContentImageDto contentImageDto) { // @ModelAttribute로 수정
+
         Post post = this.postService.getPost(id);
         SiteUser siteUser = this.userService.getUser(principal.getName());
 
@@ -40,10 +48,8 @@ public class ContentController {
             return "post_detail";
         }
 
-        this.contentService.create(post, contentForm.getContent(), siteUser);
-
-        // 답변을 저장한다.
-//        this.answerService.create(question, content);
+        // 컨텐츠 생성 서비스 호출
+        this.contentService.create(post, contentForm.getContent(), siteUser, contentImageDto);
 
         return String.format("redirect:/post/detail/%s", id);
     }
