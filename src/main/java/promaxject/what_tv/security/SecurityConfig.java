@@ -24,6 +24,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         // /mypage 경로에 대해 인증 요구
                         .requestMatchers(new AntPathRequestMatcher("/user/mypage")).authenticated()
+                        // /admin 경로는 ADMIN만 접근 가능
+                        .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ROLE_ADMIN")
+                        // /admin 경로는 ADMIN만 접근 가능
+//                        .requestMatchers(new AntPathRequestMatcher("/notice/create")).hasRole("ROLE_ADMIN")
                         // /sms/send 경로는 인증 없이 접근 가능
                         .requestMatchers(new AntPathRequestMatcher("/sms/send")).permitAll()
                         // 나머지 모든 경로는 인증 없이 접근 가능

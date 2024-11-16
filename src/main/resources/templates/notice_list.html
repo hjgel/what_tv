@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공지사항 목록</title>
+</head>
+<body>
+
+<h1>공지사항 목록</h1>
+
+
+<!-- 공지사항 목록 내용 -->
+<table>
+  <thead>
+  <tr>
+    <th>제목</th>
+    <th>작성자</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="notice : ${notices}">
+    <td th:text="${notice.title}"></td>
+    <td th:text="${notice.author.nickname}"></td>
+    <td th:text="${notice.createdAt}"></td>
+
+  </tr>
+  </tbody>
+</table>
+
+<!-- 관리자만 공지사항 작성 버튼 보기 -->
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+  <a href="/notice/create">공지사항 작성</a>
+</div>
+
+</body>
+</html>

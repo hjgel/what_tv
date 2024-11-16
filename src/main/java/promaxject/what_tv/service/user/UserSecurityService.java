@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import promaxject.what_tv.domain.SiteUser;
 import promaxject.what_tv.repository.UserRepository;
-import promaxject.what_tv.role.UserRole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +29,11 @@ public class UserSecurityService implements UserDetailsService {
         SiteUser siteUser = _siteUser.get();
         List<GrantedAuthority> authorities = new ArrayList<>();
 
-        if("admin".equals(username)) {
-            authorities.add(new SimpleGrantedAuthority(UserRole.ADMIN.getValue()));
-        } else {
-            authorities.add(new SimpleGrantedAuthority(UserRole.USER.getValue()));
+        // roles 컬렉션에서 권한을 동적으로 추가
+        for (String role : siteUser.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority(role)); // 예: "ROLE_USER", "ROLE_ADMIN"
         }
+
         return new User(siteUser.getUsername(), siteUser.getPassword(), authorities);
     }
 }
