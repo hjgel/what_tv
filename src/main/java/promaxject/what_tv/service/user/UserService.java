@@ -10,6 +10,7 @@ import promaxject.what_tv.domain.SiteUser;
 import promaxject.what_tv.repository.UserRepository;
 
 import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -57,10 +58,13 @@ public class UserService {
         user.setEmail(email);
         user.setRegion(region);
         user.setPNumber(pNumber);
+        user.setRoles(Set.of("ROLE_USER"));
         this.userRepository.save(user);
 
         return user;
     }
+
+
     public SiteUser getUser(String username) {
         Optional<SiteUser> siteUser = userRepository.findByUsername(username);
         if(siteUser.isPresent()) {

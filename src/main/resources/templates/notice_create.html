@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공지사항 작성</title>
+</head>
+<body>
+<h1>공지사항 작성</h1>
+<form action="/notice/create" method="post">
+  <!-- CSRF 토큰 추가 -->
+  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+  <div>
+    <label for="title">제목</label>
+    <input type="text" id="title" name="title" required>
+  </div>
+  <div>
+    <label for="content">내용</label>
+    <textarea id="content" name="content" required></textarea>
+  </div>
+  <button type="submit">작성</button>
+</form>
+</body>
+</html>
