@@ -48,4 +48,7 @@ public class SiteUser {
         return roles.contains("ADMIN");
     }
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Balance balance;
+
 }
