@@ -34,12 +34,26 @@ public class PostController {
 
     // 리스트에 있는 본인 id를 http주소로 쏴주어서 매핑함.
     @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") long id, ContentForm contentForm) {
+    public String detail(Model model, @PathVariable("id") long id, ContentForm contentForm, Principal principal) {
         Post post = this.postService.getPost(id);
         model.addAttribute("post", post); // id라는 이름으로 value 객체 추가
+        // 현재 로그인한 사용자가 Post 작성자인지 확인
+        boolean isPostAuthor = false;
+        if (principal != null) {
+            String currentUsername = principal.getName();
+            isPostAuthor = post.getAuthor().getUsername().equals(currentUsername);
+        }
+        model.addAttribute("isPostAuthor", isPostAuthor);
+
+        if (principal != null) { // 인증된 사용자인 경우
+            SiteUser currentUser = userService.getUsername(principal.getName());
+            model.addAttribute("currentUserId", currentUser.getId());
+        } else { // 인증되지 않은 사용자인 경우
+            model.addAttribute("currentUserId", null); // 혹은 특정 값 설정
+        }
+
         return "post_detail";
     }
-
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String postCreate(PostForm postForm) {

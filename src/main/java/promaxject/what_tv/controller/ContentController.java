@@ -29,6 +29,7 @@ public class ContentController {
     private final ContentService contentService;
     private final UserService userService;
     private final ContentRepository contentRepository;
+
     // 비즈니스 로직을 처리하는 서비스. 질문과 관련된 데이터를 처리하는 역할.
 
     @PreAuthorize("isAuthenticated()")

@@ -27,6 +27,10 @@
   .post-meta span.separator {
     margin: 0 5.0rem; /* 양쪽에 0.5rem 여백 추가 */
   }
+  .blurred-image {
+    filter: blur(5px)!important; /* 블러 강도 설정 */
+    -webkit-filter: blur(5px)!important; /* 크롬, 사파리 지원 */
+  }
 </style>
 <body>
 <div layout:fragment="content" class="container my-3">
@@ -91,11 +95,12 @@
           </div>
           <div th:if="${#strings.endsWith(file.url, '.jpg') or #strings.endsWith(file.url, '.jpeg') or #strings.endsWith(file.url, '.png') or #strings.endsWith(file.url, '.gif')}">
             <!-- 이미지일 경우 -->
-            <img th:src="${file.url}" alt="Image" width="300px" height="200px">
+            <img alt="Image" class="blurred-image" height="200px" th:src="${file.url}" width="300px">
           </div>
         </th:block>
       </div>
     </div> <!-- 여기서 누락된 </div> 추가 -->
+
     <div class="card-body">
       <div class="card-text" style="white-space: pre-line;" th:utext="${@commonUtil.markdown(content.content)}"></div>
       <div class="d-flex justify-content-end">
@@ -107,6 +112,16 @@
         </div>
       </div>
     </div>
+    <!-- 송금하기 버튼 -->
+    <!-- 송금하기 버튼 -->
+    <div class="card-footer text-start">
+      <button class="btn btn-success send-payment"
+              th:data-post-id="${post.id}"
+              th:data-receiver="${content.author.id}"
+              th:if="${isPostAuthor and content.author != null and post.order_price != null}">
+        송금하기
+      </button>
+    </div>
   </div>
   <!-- 답변 작성 -->
   <form th:action="@{|/content/create/${post.id}|}" th:object="${contentForm}" method="post" class="my-3" enctype="multipart/form-data">
@@ -115,7 +130,7 @@
     <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="form-control" rows="10"></textarea>
 
     <!-- 파일 업로드 -->
-    <div class="mb-3">
+    <div  class="mb-3">
       <label for="files">파일 업로드</label>
       <input type="file" name="files" id="files" class="form-control" multiple>
     </div>
@@ -130,6 +145,39 @@
     element.addEventListener('click', function() {
       if(confirm("정말로 삭제하시겠습니까?")) {
         location.href = this.dataset.uri;
+      }
+    });
+  });
+</script>
+
+<script layout:fragment="script" type='text/javascript'>
+  const payment_buttons = document.getElementsByClassName("send-payment");
+  Array.from(payment_buttons).forEach(function (button) {
+    button.addEventListener('click', function () {
+      const receiverId = this.dataset.receiver;
+      const postId = this.dataset.postId;
+
+      if (confirm("정말로 보내겠습니까?")) {
+        fetch('/balance/transfer', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            postId: postId,         // Post ID
+            receiverId: receiverId  // 답글 작성자 ID
+          })
+        }).then(response => {
+          if (response.ok) {
+            alert("송금이 완료되었습니다!");
+            location.reload();
+          } else {
+            alert("송금에 실패했습니다.");
+          }
+        }).catch(error => {
+          console.error("Error during payment:", error);
+          alert("오류가 발생했습니다.");
+        });
       }
     });
   });
