@@ -24,6 +24,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         // /mypage 경로에 대해 인증 요구
                         .requestMatchers(new AntPathRequestMatcher("/user/mypage")).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/balance/transfer")).authenticated()
                         // /admin 경로는 ADMIN만 접근 가능
                         .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ROLE_ADMIN")
                         // /admin 경로는 ADMIN만 접근 가능
@@ -39,7 +40,8 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/h2-console/**"),
                                 new AntPathRequestMatcher("/api/v1/payment/validation/**"),
                                 new AntPathRequestMatcher("/api/v1/payment/order/**"),
-                                new AntPathRequestMatcher("/sms/send") // /sms/send 경로에 대해 CSRF 비활성화
+                                new AntPathRequestMatcher("/sms/send"), // /sms/send 경로에 대해 CSRF 비활성화
+                                new AntPathRequestMatcher("/balance/transfer") // /balance/transfer 경로에 대해 CSRF 비활성화
                         )
                 )
                 .headers((headers) -> headers

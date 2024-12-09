@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -39,6 +40,5 @@ public class Post {
     private List<Image> imageList;
 
 
-
-    private Integer order_price;
+    private BigDecimal order_price;
 }

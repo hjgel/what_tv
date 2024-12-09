@@ -25,6 +25,7 @@ import promaxject.what_tv.domain.SiteUser;
 import javax.persistence.criteria.*;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +87,7 @@ public class PostService {
         p.setContent(content);
         p.setCreateAt(LocalDateTime.now());
         p.setAuthor(user);
-        p.setOrder_price(price);
+        p.setOrder_price(BigDecimal.valueOf(price));
         this.postRepository.save(p);
 
         if(postImageDto.getFiles() != null && !postImageDto.getFiles().isEmpty()) {
