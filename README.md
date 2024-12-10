@@ -3,8 +3,7 @@
 
 
 # 프로젝트 소개 
-
-![image](![image](https://github.com/user-attachments/assets/5d1a45c1-1771-4d18-bf5f-88a041e2409e))
+<img width="661" alt="image" src="https://github.com/user-attachments/assets/5d1a45c1-1771-4d18-bf5f-88a041e2409e">
 
 국민 재난 안전 대책 서비스
 <hr>
@@ -50,7 +49,7 @@
 
 <br>
 <hr>
-
+### 사용자 설명서
 <br>
 <ppt 링크>
 <br>
