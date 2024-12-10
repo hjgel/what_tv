@@ -47,8 +47,6 @@
 <hr>
 
 ### 사용자 설명서
-
-<ppt 링크>
 <a href="https://github.com/user-attachments/files/18078568/default.pptx">설명 PPT</a>
 
 <hr>
