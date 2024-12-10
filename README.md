@@ -1,4 +1,4 @@
-[사용자 설명서.pptx](https://github.com/user-attachments/files/18078568/default.pptx)# 어쩔 TV
+
 어쩔 수 없는 상황을 도와주는 웹페이지
 
 
@@ -23,7 +23,7 @@
 
 <img width="661" alt="image" src="https://github.com/user-attachments/assets/adbb4376-61e2-4828-a77d-fd98653fa1ae">
 
-2022년까지 대한민국에서 발생한 교통사고는 연간 약 20만 건에 이르는 것으로 나타났다. 이는 하루 평균 약 548건의 교통사고가 발생한다는 의미이며, 자동차 1만 대당 교통사고 발생 건수는 0.9건, 인구 10만 명당 교통사고로 인한 사망자는 5.3명에 달한다.
+2022년까지 대한민국에서 발생한 교통사고는 연간 약 20만 건에 이르는 것으로 나타났다. 이는 하루 평균 약 548건의 교통사고가 발생한다는 의미이며, 자동차 1만 대당 교통사고 발생 건수는 0.9건, 인구 10만 명당 교통사고로 인한 사망자는 5.3명에 달한다.
 
 교통사고 발생 후 책임 비율을 둘러싼 법적 분쟁 또한 매우 빈번히 일어난다. 연간 약 11만 건의 과실 비율 소송이 발생하며, 이로부터 사고자의 약 22.5%에서 55%가량이 자신이 부당하게 처리되었다고 느끼고 있음을 추정할 수 있다. 이러한 소송 중 많은 경우가 증거 부족으로 인해 불리한 결과를 맞이하는데, 이는 사고 당사자들에게 큰 불이익을 초래한다.
 
@@ -54,13 +54,12 @@
 <br>
 <ppt 링크>
 <br>
-<a href="[사용자 설명서.pptx](https://github.com/user-attachments/files/18078569/default.pptx)">설명 PPT</a>
-
+<a href="https://github.com/user-attachments/files/18078568/default.pptx">설명 PPT</a>
 
 <hr>
 
 ### 개발환경
-<img width="454" alt="스크린샷 2024-11-10 오후 1 01 17" src="![image](https://github.com/user-attachments/assets/d40b86c2-aa47-4ae8-a16a-36a3be31e551)">
+<img width="454" alt="스크린샷 2024-11-10 오후 1 01 17" src="https://github.com/user-attachments/assets/d40b86c2-aa47-4ae8-a16a-36a3be31e551">
 
 
 
