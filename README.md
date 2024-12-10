@@ -1,11 +1,6 @@
-
-어쩔 수 없는 상황을 도와주는 웹페이지
-
-
-# 프로젝트 소개 
+# 어쩔 TV
 <img width="661" alt="image" src="https://github.com/user-attachments/assets/5d1a45c1-1771-4d18-bf5f-88a041e2409e">
-
-국민 재난 안전 대책 서비스
+어쩔 수 없는 상황을 도와주는 웹페이지
 <hr>
 
 ## 👩‍💻 참여인원
